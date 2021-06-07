@@ -9,23 +9,22 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { ChartDonut } from "@patternfly/react-charts";
-import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
 
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import ScheduleIcon from "@material-ui/icons/Schedule";
 import EditIcon from "@material-ui/icons/Edit";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import Divider from "@material-ui/core/Divider";
+import randomColor from "randomcolor";
 
 const useStyles = makeStyles({
   root: {
     backgroundColor: "#F6F6F6",
     borderRadius: "11px",
+    maxHeight: "250px",
   },
   bullet: {
     display: "inline-block",
@@ -40,16 +39,16 @@ const useStyles = makeStyles({
   },
 
   avatar: {
-    position: "relative",
-    left: "154.57%",
+    position: "",
+    left: "100%",
     width: 28,
     height: 28,
     backgroundColor: "#515151",
   },
   header: {
     position: "relative",
-    left: "13.69%",
-    top: "6.77%",
+    left: "10%",
+    top: "7.5%",
     marginBottom: "10px",
     marginTop: "10px",
 
@@ -62,8 +61,7 @@ const useStyles = makeStyles({
   },
   subheader: {
     position: "relative",
-    left: "17.35%",
-
+    left: "10%",
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: 500,
@@ -75,7 +73,18 @@ const useStyles = makeStyles({
     position: "relative",
     width: 28,
     height: 28,
+    color: "#2E2E2E",
+  },
+  activity: {
+    position: "relative",
+    left: "5%",
+    marginBottom: "10px",
+    marginTop: "10px",
 
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontSize: "20px",
+    lineHeight: "19px",
     color: "#2E2E2E",
   },
 });
@@ -123,20 +132,35 @@ function App() {
 
   return (
     <div>
-      <Grid container spacing={2}>
+      <Grid container justify='center' spacing={4}>
         <Grid item xs={3}>
           <Card className={classes.root}>
-            <Typography className={classes.header}>
-              Batch Name | PHY_B1
-            </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={10}>
+                <Typography className={classes.header}>
+                  Batch Name | PHY_B1
+                </Typography>
+              </Grid>
+              <Grid item xs={2}>
+                <IconButton
+                  style={{ top: "25%", right: "0%" }}
+                  aria-label="settings"
+                  className={classes.icon}
+                >
+                  <EditIcon />
+                </IconButton>
+              </Grid>
+            </Grid>
             <CardHeader
               avatar={
-                <Avatar aria-label="avatar" className={classes.avatar}>
-                
-                </Avatar>
+                <Avatar aria-label="avatar" className={classes.avatar}></Avatar>
               }
               action={
-                <IconButton aria-label="settings" className={classes.icon}>
+                <IconButton
+                  style={{ top: "25%", right: "50%" }}
+                  aria-label="settings"
+                  className={classes.icon}
+                >
                   <PersonAddIcon />
                 </IconButton>
               }
@@ -148,8 +172,10 @@ function App() {
             />
             <CardHeader
               avatar={
-                <Avatar aria-label="settings" className={classes.avatar}>
-                </Avatar>
+                <Avatar
+                  aria-label="settings"
+                  className={classes.avatar}
+                ></Avatar>
               }
               title={
                 <Typography className={classes.subheader}>
@@ -157,14 +183,47 @@ function App() {
                 </Typography>
               }
             />
+            <CardHeader
+              avatar={
+                <Avatar aria-label="settings" className={classes.avatar}>
+                  <ScheduleIcon />
+                </Avatar>
+              }
+              action={
+                <Button
+                  style={{ top: "50%" }}
+                  variant="outlined"
+                  color="primary"
+                >
+                  View
+                </Button>
+              }
+              title={
+                <Typography className={classes.subheader}>
+                  <div style={{ fontWeight: 400, padding: "1px" }}>
+                    Upcoming Activity
+                  </div>
+                  <div style={{ fontWeight: 400, padding: "1px" }}>
+                    Thu, 25th May{" "}
+                  </div>
+                  <div
+                    style={{ fontWeight: 800, color: "black", padding: "2px" }}
+                  >
+                    12:00 PM - 12:00 PM
+                  </div>
+                </Typography>
+              }
+            />
             <CardContent>
-              <Typography variant="body2" color="textSecondary" component="p">
-                Test
-              </Typography>
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                component="p"
+              ></Typography>
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={7}>
+        <Grid item xs={6}>
           <Card className={classes.root}>
             <CardContent>
               <div className="App">
@@ -230,6 +289,68 @@ function App() {
           </Card>
         </Grid>
       </Grid>
+      <div>
+        <Grid container spacing={3}>
+          <Grid item xs={2}>
+            <div style={{}}>
+              <Typography className={classes.activity}>
+                Activities | 26th Apr, 2020
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={8}>
+            <div style={{ top: "50%", transform: "translate(0px, 20px  )" }}>
+              <Divider />
+            </div>
+          </Grid>
+          <Grid item xs={2}>
+            <div style={{}}>
+              <Button variant="contained" color="primary">
+                + Schedule Activity
+              </Button>
+            </div>
+          </Grid>
+        </Grid>
+      </div>
+      <div>
+        <Grid container justify= 'center' spacing={2}>
+          <Grid item xs={1}>
+            <div style={{ backgroundColor: randomColor() }}>
+              <Typography> MON </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={1}>
+            <div style={{ backgroundColor: randomColor() }}>
+              <Typography> TUE </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={1}>
+            <div style={{ backgroundColor: randomColor() }}>
+              <Typography> WED </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={1}>
+            <div style={{ backgroundColor: randomColor() }}>
+              <Typography> THU </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={1}>
+            <div style={{ backgroundColor: randomColor() }}>
+              <Typography> FRI </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={1}>
+            <div style={{ backgroundColor: randomColor() }}>
+              <Typography> SAT </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={1}>
+            <div style={{ backgroundColor: randomColor() }}>
+              <Typography> SUN </Typography>
+            </div>
+          </Grid>
+        </Grid>
+      </div>
     </div>
   );
 }
