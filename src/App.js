@@ -20,8 +20,8 @@ const useStyles = makeStyles({
     right: "60.61%",
     top: "5.08%",
     bottom: "70.18%",
+    minHeight: 250,
     minWidth: 1000,
-    minHeight: 500,
     backgroundColor: "#F6F6F6",
     borderRadius: "11px",
   },
@@ -39,17 +39,17 @@ const useStyles = makeStyles({
 });
 
 const Attendance = () => (
-  <div style={{ height: "250px", width: "250px" }}>
+  <div style={{ height: "150px", width: "150px" }}>
     <ChartDonut
-      innerRadius={40}
+      innerRadius={60}
+      padding={20,20,20,20}
       ariaDesc="Attendance"
       ariaTitle="Donut Chart"
       constrainToVisibleArea={true}
       data={[
-        { x: "Attendance", y: 90 },
-        { x: "Not-Attended", y: 10 },
+        { x: "Attended", y: 90 },
+        { x: "Unattended", y: 10 },
       ]}
-      height={150}
       labels={({ datum }) => `${datum.x}: ${datum.y}%`}
       title="90%"
       animate="true"
@@ -61,7 +61,7 @@ const Tests = () => (
   <div style={{ height: "150px", width: "150px" }}>
     <ChartDonut
       innerRadius={60}
-      ariaDesc="Attendance"
+      ariaDesc="Tests"
       ariaTitle="Donut Chart"
       constrainToVisibleArea={true}
       data={[
@@ -88,31 +88,38 @@ function App() {
               <Typography style={{ paddingBottom: "0px" }}>
                 Attendance
               </Typography>
-              <Attendance />
+              <div style={{ alignItems: "center", alignContent: "center" }}>
+                <Attendance />
+              </div>
+              <Typography display="block" style={{ color: "#515151" }}>
+              <div>Last Absence</div>
+              <div>12th May, 12:00 PM</div>
+            </Typography>
             </Grid>
             <Grid item xs={4}>
               <div style={{}}>
-                <Typography style={{ paddingBottom: "0px" }}> 
-                Tests 
-                </Typography>
+                <Typography style={{ paddingBottom: "0px" }}>Tests</Typography>
                 <Tests />
               </div>
+              <Typography display="block" style={{ color: "#515151" }}>
+              <div>Last Test</div>
+              <div>100%</div>
+            </Typography>
             </Grid>
             <Grid item xs={4}>
               <div style={{}}>
-                <Typography style={{ paddingBottom: "0px" }}>
+                <Typography style={{ paddingBottom: "50px" }}>
                   HW Rating
                 </Typography>
                 <Rating name="read-only" value={value} readOnly />
+                <Typography style={{ paddingBottom: "0px" }}>
+                  ({value})
+                </Typography>
+                <Typography display="block" style={{ color: "#515151" }}>
+                  <div>Last Homework</div>
+                  <div>4.5</div>
+                </Typography>
               </div>
-            </Grid>
-            <Grid item xs={6}>
-              <div style={{ background: "black" }}>
-                Hooray something is here!
-              </div>
-            </Grid>
-            <Grid item xs={6}>
-              <div style={{}}> Hooray something is too! </div>
             </Grid>
           </Grid>
         </div>
